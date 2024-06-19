@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build image
-        run: docker build -f debian.Dockerfile -t qmcgaw/godevcontainer .
+        run: docker build -f debian.Dockerfile -t iznthgodevcontainer .
 
   publish:
     if: |
@@ -76,5 +76,5 @@ jobs:
             COMMIT=${{ steps.vars.outputs.commit }}
             VERSION=${{ steps.vars.outputs.version }}
           tags: |
-            qmcgaw/godevcontainer:${{ steps.vars.outputs.debian_version }}
+            iznthgodevcontainer:${{ steps.vars.outputs.debian_version }}
           push: true
