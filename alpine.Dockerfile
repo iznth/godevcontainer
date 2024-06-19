@@ -20,35 +20,35 @@ ARG HELM_VERSION=v3.14.0
 
 
 FROM golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS go
-FROM qmcgaw/binpot:gomodifytags-${GOMODIFYTAGS_VERSION} AS gomodifytags
-FROM qmcgaw/binpot:goplay-${GOPLAY_VERSION} AS goplay
-FROM qmcgaw/binpot:gotests-${GOTESTS_VERSION} AS gotests
-FROM qmcgaw/binpot:dlv-${DLV_VERSION} AS dlv
-FROM qmcgaw/binpot:mockery-${MOCKERY_VERSION} AS mockery
-FROM qmcgaw/binpot:gomock-${GOMOCK_VERSION} AS gomock
-FROM qmcgaw/binpot:mockgen-${MOCKGEN_VERSION} AS mockgen
-FROM qmcgaw/binpot:gopls-${GOPLS_VERSION} AS gopls
-FROM qmcgaw/binpot:golangci-lint-${GOLANGCILINT_VERSION} AS golangci-lint
-FROM qmcgaw/binpot:impl-${IMPL_VERSION} AS impl
-FROM qmcgaw/binpot:gopkgs-${GOPKGS_VERSION} AS gopkgs
-FROM qmcgaw/binpot:kubectl-${KUBECTL_VERSION} AS kubectl
-FROM qmcgaw/binpot:stern-${STERN_VERSION} AS stern
-FROM qmcgaw/binpot:kubectx-${KUBECTX_VERSION} AS kubectx
-FROM qmcgaw/binpot:kubens-${KUBENS_VERSION} AS kubens
-FROM qmcgaw/binpot:helm-${HELM_VERSION} AS helm
+FROM iznth/binpot:gomodifytags-${GOMODIFYTAGS_VERSION} AS gomodifytags
+FROM iznth/binpot:goplay-${GOPLAY_VERSION} AS goplay
+FROM iznth/binpot:gotests-${GOTESTS_VERSION} AS gotests
+FROM iznth/binpot:dlv-${DLV_VERSION} AS dlv
+FROM iznth/binpot:mockery-${MOCKERY_VERSION} AS mockery
+FROM iznth/binpot:gomock-${GOMOCK_VERSION} AS gomock
+FROM iznth/binpot:mockgen-${MOCKGEN_VERSION} AS mockgen
+FROM iznth/binpot:gopls-${GOPLS_VERSION} AS gopls
+FROM iznth/binpot:golangci-lint-${GOLANGCILINT_VERSION} AS golangci-lint
+FROM iznth/binpot:impl-${IMPL_VERSION} AS impl
+FROM iznth/binpot:gopkgs-${GOPKGS_VERSION} AS gopkgs
+FROM iznth/binpot:kubectl-${KUBECTL_VERSION} AS kubectl
+FROM iznth/binpot:stern-${STERN_VERSION} AS stern
+FROM iznth/binpot:kubectx-${KUBECTX_VERSION} AS kubectx
+FROM iznth/binpot:kubens-${KUBENS_VERSION} AS kubens
+FROM iznth/binpot:helm-${HELM_VERSION} AS helm
 
-FROM qmcgaw/basedevcontainer:${BASEDEV_VERSION}-alpine
+FROM iznth/baseddevcontainer:${BASEDEV_VERSION}-alpine
 ARG CREATED
 ARG COMMIT
 ARG VERSION=local
 LABEL \
-    org.opencontainers.image.authors="quentin.mcgaw@gmail.com" \
+    org.opencontainers.image.authors="brad@izn.ai" \
     org.opencontainers.image.created=$CREATED \
     org.opencontainers.image.version=$VERSION \
     org.opencontainers.image.revision=$COMMIT \
-    org.opencontainers.image.url="https://github.com/qdm12/godevcontainer" \
-    org.opencontainers.image.documentation="https://github.com/qdm12/godevcontainer" \
-    org.opencontainers.image.source="https://github.com/qdm12/godevcontainer" \
+    org.opencontainers.image.url="https://github.com/iznth/godevcontainer" \
+    org.opencontainers.image.documentation="https://github.com/iznth/godevcontainer" \
+    org.opencontainers.image.source="https://github.com/iznth/godevcontainer" \
     org.opencontainers.image.title="Go Dev container Alpine" \
     org.opencontainers.image.description="Go development container for Visual Studio Code Remote Containers development"
 COPY --from=go /usr/local/go /usr/local/go
